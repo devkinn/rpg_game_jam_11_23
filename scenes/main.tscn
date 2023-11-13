@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=4 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
+[ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
@@ -10,3 +11,5 @@ script = ExtResource("1_liftv")
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
+
+[node name="background" parent="." instance=ExtResource("3_g6601")]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://8vmhbqct7a8x"]
+
+[ext_resource type="Script" path="res://scripts/background.gd" id="1_4lngv"]
+[ext_resource type="Texture2D" uid="uid://bn1htbe6a85vr" path="res://assets/backbround/IslandsMap.png" id="1_k47em"]
+
+[node name="background" type="ParallaxBackground"]
+scroll_base_offset = Vector2(0, 100)
+script = ExtResource("1_4lngv")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 900)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(240, 456)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_k47em")
+region_rect = Rect2(-3.72205, -5.19989, 641.778, 1200.01)
