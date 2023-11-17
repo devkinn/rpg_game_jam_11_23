@@ -21,3 +21,12 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Projectile" parent="." instance=ExtResource("2_xaow2")]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 160.0
+offset_top = 624.0
+offset_right = 320.0
+offset_bottom = 672.0
+text = "Gain Exp"
+
+[connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]

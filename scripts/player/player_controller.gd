@@ -25,6 +25,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 		
 
-
-func _on_exp_gain_button_pressed() -> void:
+func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))

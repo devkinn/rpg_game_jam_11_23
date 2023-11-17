@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlhra2v7ybiop"]
+[gd_scene load_steps=6 format=3 uid="uid://dlhra2v7ybiop"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
 [ext_resource type="Texture2D" uid="uid://le8afxb65pqr" path="res://assets/player/Grafika_bez_nazwy_2.png" id="2_yq3m4"]
+[ext_resource type="Script" path="res://scripts/player/progression_system.gd" id="3_y6lme"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
@@ -36,3 +37,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="ProjectileStartPoint" type="Marker2D" parent="."]
 position = Vector2(0, -32)
+
+[node name="ProgressionSystem" type="Node" parent="."]
+script = ExtResource("3_y6lme")
