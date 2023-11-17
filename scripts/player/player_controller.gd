@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var progression_system: Node = $ProgressionSystem
+
 @export var speed: float = 300.0
 @export var friction: float = 7.0
 @export var acceleration: float = 10.0
@@ -22,3 +24,7 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
 		
+
+
+func _on_exp_gain_button_pressed() -> void:
+	progression_system.add_xp(randi_range(3, 5))
