@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlufhcyyrwgc1"]
+
+[ext_resource type="Texture2D" uid="uid://bx1f0u7310n71" path="res://icon.svg" id="1_d11i6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_574yr"]
+font_size = 14
+
+[sub_resource type="LabelSettings" id="LabelSettings_osoan"]
+font_size = 9
+
+[node name="Upgrade_UI" type="Button"]
+offset_right = 255.0
+offset_bottom = 75.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 72.0
+offset_bottom = 69.0
+texture = ExtResource("1_d11i6")
+expand_mode = 1
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 195.0
+offset_bottom = 34.0
+text = "Upgrade name"
+label_settings = SubResource("LabelSettings_574yr")
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 38.0
+offset_right = 132.0
+offset_bottom = 61.0
+text = "Description
+"
+label_settings = SubResource("LabelSettings_osoan")

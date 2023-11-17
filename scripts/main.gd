@@ -5,6 +5,9 @@ extends Node
 @onready var player: CharacterBody2D = $Player
 @onready var projectile_start_point: Marker2D = $Player/ProjectileStartPoint
 @onready var shoot_cooldown: Timer = $ShootCooldown
+
+@onready var upgrade_screen_ui: ColorRect = $upgrade_screen_ui
+
 @export var projectile_scene: PackedScene
 @export var projectile_speed = 500.0
 
@@ -26,3 +29,7 @@ func shoot():
 	add_child(projectile)
 	shoot_cooldown.start()
 	
+
+
+func _on_player_level_up() -> void:
+	upgrade_screen_ui.show()

@@ -1,6 +1,6 @@
 extends Node
 
-signal level_up
+@onready var player: CharacterBody2D = $".."
 
 @export var a: float = 0.5
 @export var b: float = 1.4
@@ -23,7 +23,7 @@ func add_level() -> void:
 	current_xp = 0
 	current_level += 1
 	xp_needed_for_next_level = calculate_next_level_xp_cap(current_level + 1)
-	level_up.emit()
+	player.level_gained()
 
 # Leveling up based on exponential curve
 func calculate_next_level_xp_cap(level: int) -> int:

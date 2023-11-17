@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal level_up
+
 @onready var progression_system: Node = $ProgressionSystem
 
 @export var speed: float = 300.0
@@ -27,3 +29,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
+	
+func level_gained():
+	level_up.emit()

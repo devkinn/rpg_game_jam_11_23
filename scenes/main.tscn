@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=6 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
 [ext_resource type="PackedScene" uid="uid://c30kbf83ed1gx" path="res://scenes/projectile.tscn" id="2_xaow2"]
 [ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
+[ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_sepuh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
@@ -29,4 +30,8 @@ offset_right = 320.0
 offset_bottom = 672.0
 text = "Gain Exp"
 
+[node name="upgrade_screen_ui" parent="." instance=ExtResource("5_sepuh")]
+visible = false
+
+[connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
