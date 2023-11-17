@@ -9,6 +9,7 @@ var screen_size: Vector2
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	$AnimatedSprite2D.play()
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -21,4 +22,4 @@ func _physics_process(delta: float) -> void:
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
-		
+	
