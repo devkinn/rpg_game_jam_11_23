@@ -21,3 +21,4 @@ func _physics_process(delta: float) -> void:
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
+		

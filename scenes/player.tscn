@@ -1,29 +1,38 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlhra2v7ybiop"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
-[ext_resource type="Texture2D" uid="uid://bx1f0u7310n71" path="res://icon.svg" id="2_rsqso"]
+[ext_resource type="Texture2D" uid="uid://le8afxb65pqr" path="res://assets/player/Grafika_bez_nazwy_2.png" id="2_yq3m4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rsqso")
+"texture": ExtResource("2_yq3m4")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mgo3"]
-size = Vector2(62, 62)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h8rj8"]
+radius = 9.0
+height = 54.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(1, 0)
+collision_mask = 2
 script = ExtResource("1_2pugp")
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+position = Vector2(0, 23)
+scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_1qtpv")
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_6mgo3")
+shape = SubResource("CapsuleShape2D_h8rj8")
+one_way_collision_margin = 29.5
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="ProjectileStartPoint" type="Marker2D" parent="."]
+position = Vector2(0, -32)
