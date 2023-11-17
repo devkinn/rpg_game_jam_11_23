@@ -32,15 +32,8 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
 	
-func _unhandled_input(event):
-	if(event.is_action("shoot") and shoot_cooldown.is_stopped()):
+	if(Input.is_action_pressed("shoot") and shoot_cooldown.is_stopped()):
 		shoot()
-	if(event.is_action_pressed("upgrade")):
-		mode = (mode+1)%shooting_mode.size()
-	if(event.is_action_pressed("attack_speed_up")):
-		shoot_cooldown.wait_time /= 2
-	if(event.is_action_pressed("attack_speed_down")):
-		shoot_cooldown.wait_time *= 2
 	
 func shoot():
 	for x in shooting_mode[mode]:
@@ -51,5 +44,15 @@ func shoot():
 		projectile.linear_velocity = velosity
 		
 		add_child(projectile)
-	shoot_cooldown.start()
+	shoot_cooldown.start()	
+			
+func _unhandled_input(event):
+	if(event.is_action_pressed("upgrade")):
+		mode = (mode+1)%shooting_mode.size()
+	if(event.is_action_pressed("attack_speed_up")):
+		shoot_cooldown.wait_time /= 2
+	if(event.is_action_pressed("attack_speed_down")):
+		shoot_cooldown.wait_time *= 2
+	
+
 	
