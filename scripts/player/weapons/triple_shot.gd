@@ -9,17 +9,18 @@ var projectile_speed: float = 500.0
 
 func shoot():
 	var projectiles: int = 0
-	var start_rotation: int = -30
+	var start_rotation: float = -PI / 6
 	
 	while projectiles < 3:
 		var projectile: RigidBody2D = projectile_scene.instantiate()
 		projectile.position = player.position + projectile_start_point.position
 		
 		var velocity = Vector2(0.0, -projectile_speed)
-		projectile.linear_velocity = velocity
+		projectile.rotation = start_rotation
+		projectile.linear_velocity = velocity.rotated(start_rotation)
 		add_child(projectile)
 		
-		start_rotation += 30
+		start_rotation += PI / 6
 		projectiles += 1
 	
 	shot_cooldown.start()
