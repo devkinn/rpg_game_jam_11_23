@@ -2,26 +2,20 @@
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
-[ext_resource type="PackedScene" uid="uid://c30kbf83ed1gx" path="res://scenes/projectile.tscn" id="2_xaow2"]
+[ext_resource type="PackedScene" uid="uid://ccuitm3lymdxj" path="res://scenes/projectile.tscn" id="2_xaow2"]
 [ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
 [ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_tr1x5"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
-projectile_scene = ExtResource("2_xaow2")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
+
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
 
 [node name="background" parent="." instance=ExtResource("3_g6601")]
-
-[node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="Projectile" parent="." instance=ExtResource("2_xaow2")]
 
 [node name="Button" type="Button" parent="."]
 offset_left = 160.0
@@ -34,3 +28,4 @@ text = "Gain Exp"
 visible = false
 
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
+
