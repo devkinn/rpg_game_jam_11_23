@@ -31,6 +31,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
 		shoot_node.shoot()
+	$AnimatedSprite2D.play()
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -43,8 +44,8 @@ func _physics_process(delta: float) -> void:
 
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
-		
 	
+  
 func upgrade_player(upgrade) -> void:
 	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
 		shoot_node.queue_free()
@@ -91,3 +92,4 @@ func level_up():
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
+

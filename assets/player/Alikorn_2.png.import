@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://le8afxb65pqr"
-path="res://.godot/imported/Grafika_bez_nazwy_2.png-6b3a841d2899678b31559597f7dc7991.ctex"
+uid="uid://dtbdpoxy7sh2a"
+path="res://.godot/imported/Alikorn_2.png-b52c5b31f93ce3109f05580f6722b3b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Grafika_bez_nazwy_2.png"
-dest_files=["res://.godot/imported/Grafika_bez_nazwy_2.png-6b3a841d2899678b31559597f7dc7991.ctex"]
+source_file="res://assets/player/Alikorn_2.png"
+dest_files=["res://.godot/imported/Alikorn_2.png-b52c5b31f93ce3109f05580f6722b3b9.ctex"]
 
 [params]
 

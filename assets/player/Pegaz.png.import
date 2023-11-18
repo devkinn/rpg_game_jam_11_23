@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7r74cb7jcf8i"
-path="res://.godot/imported/Grafika_bez_nazwy_4.png-055275814c614ef7d178331b57d84766.ctex"
+uid="uid://c0tgvmfqxb2hl"
+path="res://.godot/imported/Pegaz.png-3ecce7228efa166007207759ef372fe3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Grafika_bez_nazwy_4.png"
-dest_files=["res://.godot/imported/Grafika_bez_nazwy_4.png-055275814c614ef7d178331b57d84766.ctex"]
+source_file="res://assets/player/Pegaz.png"
+dest_files=["res://.godot/imported/Pegaz.png-3ecce7228efa166007207759ef372fe3.ctex"]
 
 [params]
 

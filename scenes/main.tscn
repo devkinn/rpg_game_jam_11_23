@@ -10,6 +10,7 @@ script = ExtResource("1_liftv")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
 
+
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
 
@@ -26,3 +27,4 @@ text = "Gain Exp"
 visible = false
 
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
+
