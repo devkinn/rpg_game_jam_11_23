@@ -8,6 +8,13 @@ extends CharacterBody2D
 var direction: Vector2
 var screen_size: Vector2
 
+# SHOOTING
+@onready var shoot_node: Node = $Shoot
+@onready var shot_cooldown: Timer = $ShotCooldown
+
+# ABILITIES
+@onready var ability_1_node: Node = $Ability1
+
 # UPGRADES
 @onready var progression_system: Node = $ProgressionSystem
 @onready var upgrade_screen_ui = get_tree().get_first_node_in_group("upgrade_panel")
@@ -20,6 +27,10 @@ var upgrade_options = []
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	
+func _process(delta: float) -> void:
+	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
+		shoot_node.shoot()
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -35,6 +46,17 @@ func _physics_process(delta: float) -> void:
 		
 	
 func upgrade_player(upgrade) -> void:
+	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
+		shoot_node.queue_free()
+		shoot_node = Node.new()
+		shoot_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+		add_child(shoot_node)
+	elif UpgradeDb.UPGRADES[upgrade]["type"] == "ability":
+		ability_1_node.queue_free()
+		ability_1_node = Node.new()
+		ability_1_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+	
+	collected_upgrades.append(upgrade)
 	upgrade_options.clear()
 	for child in upgrade_screen_ui.get_child(0).get_children():
 		child.queue_free()

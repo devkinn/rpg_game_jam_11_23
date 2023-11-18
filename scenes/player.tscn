@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlhra2v7ybiop"]
+[gd_scene load_steps=9 format=3 uid="uid://dlhra2v7ybiop"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
 [ext_resource type="PackedScene" uid="uid://dlufhcyyrwgc1" path="res://scenes/upgrade_ui.tscn" id="2_nx5m6"]
 [ext_resource type="Texture2D" uid="uid://le8afxb65pqr" path="res://assets/player/Grafika_bez_nazwy_2.png" id="2_yq3m4"]
 [ext_resource type="Script" path="res://scripts/player/progression_system.gd" id="3_y6lme"]
+[ext_resource type="Script" path="res://scripts/player/weapons/basic_shot.gd" id="5_ce4ai"]
+[ext_resource type="PackedScene" uid="uid://c30kbf83ed1gx" path="res://scenes/projectile.tscn" id="6_usf03"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
@@ -37,8 +39,18 @@ shape = SubResource("CapsuleShape2D_h8rj8")
 one_way_collision_margin = 29.5
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
+[node name="ProgressionSystem" type="Node" parent="."]
+script = ExtResource("3_y6lme")
+
+[node name="Shoot" type="Node" parent="."]
+script = ExtResource("5_ce4ai")
+projectile_scene = ExtResource("6_usf03")
+
+[node name="Ability1" type="Node" parent="."]
+
 [node name="ProjectileStartPoint" type="Marker2D" parent="."]
 position = Vector2(0, -32)
 
-[node name="ProgressionSystem" type="Node" parent="."]
-script = ExtResource("3_y6lme")
+[node name="ShotCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
