@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlhra2v7ybiop"]
+[gd_scene load_steps=9 format=3 uid="uid://dlhra2v7ybiop"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
 
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dtbdpoxy7sh2a" path="res://assets/player/Alikorn_2.png" id="3_wwnlv"]
 [ext_resource type="Texture2D" uid="uid://docbb4d3cs5yx" path="res://assets/player/Alikorn_3.png" id="4_w5bhi"]
 [ext_resource type="Script" path="res://scripts/player/progression_system.gd" id="3_y6lme"]
+[ext_resource type="Script" path="res://scripts/player/weapons/basic_shot.gd" id="5_ce4ai"]
+[ext_resource type="PackedScene" uid="uid://c30kbf83ed1gx" path="res://scenes/projectile.tscn" id="6_usf03"]
 
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
@@ -50,19 +52,21 @@ shape = SubResource("CapsuleShape2D_h8rj8")
 one_way_collision_margin = 29.5
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="ProjectileStartPoint" type="Marker2D" parent="."]
-position = Vector2(0, -32)
-
-[node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
-
-[node name="DoubleStartPoint1" type="Marker2D" parent="."]
-position = Vector2(-6, -32)
-
-[node name="DoubleStartPoint2" type="Marker2D" parent="."]
-position = Vector2(6, -32)
-
 [node name="ProgressionSystem" type="Node" parent="."]
 script = ExtResource("3_y6lme")
 
+[node name="Shoot" type="Node" parent="."]
+script = ExtResource("5_ce4ai")
+projectile_scene = ExtResource("6_usf03")
+
+[node name="Ability1" type="Node" parent="."]
+
+[node name="ProjectileStartPoint" type="Marker2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="ShotCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ProgressionSystem" type="Node" parent="."]
+script = ExtResource("3_y6lme")

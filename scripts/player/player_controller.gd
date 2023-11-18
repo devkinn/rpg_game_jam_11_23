@@ -4,18 +4,16 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var friction: float = 7.0
 @export var acceleration: float = 10.0
-@onready var single_fire = [$ProjectileStartPoint]
-@onready var double_fire = [$DoubleStartPoint1,$DoubleStartPoint2]
-@onready var triple_fire = [$DoubleStartPoint1,$ProjectileStartPoint,$DoubleStartPoint2]
-@onready var shooting_mode = [single_fire, double_fire, triple_fire]
-@onready var shoot_cooldown: Timer = $ShootCooldown
-@export var projectile_scene: PackedScene
-@export var projectile_speed = 500.0
 
-
-var mode = 0
 var direction: Vector2
 var screen_size: Vector2
+
+# SHOOTING
+@onready var shoot_node: Node = $Shoot
+@onready var shot_cooldown: Timer = $ShotCooldown
+
+# ABILITIES
+@onready var ability_1_node: Node = $Ability1
 
 # UPGRADES
 @onready var progression_system: Node = $ProgressionSystem
@@ -29,6 +27,10 @@ var upgrade_options = []
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	
+func _process(delta: float) -> void:
+	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
+		shoot_node.shoot()
 	$AnimatedSprite2D.play()
 
 func _physics_process(delta: float) -> void:
@@ -43,31 +45,19 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
 	
-	if(Input.is_action_pressed("shoot") and shoot_cooldown.is_stopped()):
-		shoot()
-	
-func shoot():
-	for x in shooting_mode[mode]:
-		var projectile = projectile_scene.instantiate()
-		projectile.position = x.position
-		
-		var velosity = Vector2(0.0, -projectile_speed)
-		projectile.linear_velocity = velosity
-		add_child(projectile)
-	shoot_cooldown.start()	
-			
-func _unhandled_input(event):
-	if(event.is_action_pressed("upgrade")):
-		mode = (mode+1)%shooting_mode.size()
-	if(event.is_action_pressed("attack_speed_up")):
-		shoot_cooldown.wait_time /= 2
-	if(event.is_action_pressed("attack_speed_down")):
-		shoot_cooldown.wait_time *= 2
-	
-
-
-	
+  
 func upgrade_player(upgrade) -> void:
+	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
+		shoot_node.queue_free()
+		shoot_node = Node.new()
+		shoot_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+		add_child(shoot_node)
+	elif UpgradeDb.UPGRADES[upgrade]["type"] == "ability":
+		ability_1_node.queue_free()
+		ability_1_node = Node.new()
+		ability_1_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+	
+	collected_upgrades.append(upgrade)
 	upgrade_options.clear()
 	for child in upgrade_screen_ui.get_child(0).get_children():
 		child.queue_free()
