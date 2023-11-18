@@ -23,7 +23,7 @@ func add_level() -> void:
 	current_xp = 0
 	current_level += 1
 	xp_needed_for_next_level = calculate_next_level_xp_cap(current_level + 1)
-	player.level_gained()
+	player.level_up()
 
 # Leveling up based on exponential curve
 func calculate_next_level_xp_cap(level: int) -> int:

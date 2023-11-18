@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm0og8xdpyltm"
-path="res://.godot/imported/IslandsMap1.png-d118cf54a5f673b021edd39baffae4df.ctex"
+uid="uid://dtiip7dhw0jgw"
+path="res://.godot/imported/#1 - Transparent Icons.png-c52145f01e132cdae9283a8517e0f1f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/IslandsMap1.png"
-dest_files=["res://.godot/imported/IslandsMap1.png-d118cf54a5f673b021edd39baffae4df.ctex"]
+source_file="res://assets/upgrade_icons/#1 - Transparent Icons.png"
+dest_files=["res://.godot/imported/#1 - Transparent Icons.png-c52145f01e132cdae9283a8517e0f1f0.ctex"]
 
 [params]
 

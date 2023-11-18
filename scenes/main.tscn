@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
 [ext_resource type="PackedScene" uid="uid://c30kbf83ed1gx" path="res://scenes/projectile.tscn" id="2_xaow2"]
 [ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
-[ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_sepuh"]
+[ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_tr1x5"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
 projectile_scene = ExtResource("2_xaow2")
 
-[node name="Player" parent="." instance=ExtResource("1_wqq3u")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
@@ -30,8 +30,7 @@ offset_right = 320.0
 offset_bottom = 672.0
 text = "Gain Exp"
 
-[node name="upgrade_screen_ui" parent="." instance=ExtResource("5_sepuh")]
+[node name="upgrade_screen_ui" parent="." groups=["upgrade_panel"] instance=ExtResource("5_tr1x5")]
 visible = false
 
-[connection signal="level_up" from="Player" to="." method="_on_player_level_up"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]

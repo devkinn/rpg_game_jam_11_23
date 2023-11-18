@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmokebaejpjd2"]
-
-[ext_resource type="PackedScene" uid="uid://dlufhcyyrwgc1" path="res://scenes/upgrade_ui.tscn" id="1_silqj"]
+[gd_scene format=3 uid="uid://dmokebaejpjd2"]
 
 [node name="upgrade_screen_ui" type="ColorRect"]
 anchors_preset = 8
@@ -27,15 +25,3 @@ offset_right = -41.0
 offset_bottom = -90.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Upgrade_UI" parent="VBoxContainer" instance=ExtResource("1_silqj")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Upgrade_UI2" parent="VBoxContainer" instance=ExtResource("1_silqj")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Upgrade_UI3" parent="VBoxContainer" instance=ExtResource("1_silqj")]
-layout_mode = 2
-size_flags_vertical = 3
