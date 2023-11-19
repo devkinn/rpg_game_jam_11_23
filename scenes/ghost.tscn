@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://sui8bw6tqbp0"]
+
+[ext_resource type="Texture2D" uid="uid://c6oa48vc2tcyf" path="res://assets/monsters/ghost.png" id="1_nmogg"]
+[ext_resource type="Script" path="res://scenes/ghost.gd" id="1_uejq6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8q2vb"]
+radius = 48.0
+height = 114.0
+
+[node name="Ghost" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["Evil"]]
+collision_layer = 6
+collision_mask = 3
+script = ExtResource("1_uejq6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(1.00003, -7.62939e-06)
+scale = Vector2(0.164174, 0.194283)
+texture = ExtResource("1_nmogg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1.90735e-06, -1)
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_8q2vb")
+
+[node name="Timer" type="Timer" parent="CharacterBody2D"]
+wait_time = 7.0
+autostart = true

@@ -26,11 +26,12 @@ var shot_number: int = 1
 @export var max_upgrade_options: int = 3
 @export var upgrade_option: PackedScene
 
-
-
+var max_health: int = 100
+var current_health: int = max_health
 
 var collected_upgrades = []
 var upgrade_options = []
+
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -39,6 +40,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
 		basic_shot.shoot(shot_number, projectile)
+	if current_health <= 0:
+		get_tree().paused = true
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -99,4 +102,9 @@ func level_up():
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
+	
+
+	
+
+
 

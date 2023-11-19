@@ -14,6 +14,10 @@ script = ExtResource("1_liftv")
 process_mode = 3
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
+speed = null
+friction = null
+acceleration = null
+max_upgrade_options = null
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)

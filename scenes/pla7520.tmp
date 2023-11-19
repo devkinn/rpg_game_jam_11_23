@@ -36,6 +36,10 @@ height = 64.0
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_2pugp")
+speed = null
+friction = null
+acceleration = null
+max_upgrade_options = null
 upgrade_option = ExtResource("2_nx5m6")
 metadata/_edit_lock_ = true
 
