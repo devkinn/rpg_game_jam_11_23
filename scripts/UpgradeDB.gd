@@ -10,12 +10,12 @@ const ABILITY_SCRIPT_PATH = "res://scripts/player/abilities/"
 const WEAPON_SCRIPT_PATH = "res://scripts/player/weapons/"
 
 const UPGRADES = {
-	"triple_shot": {
+	"wiggle_shot": {
 		"icon": ITEM_ICON_PATH + "damage_up.png",
-		"displayname": "Triple Shot",
-		"details": "Shoot 3 projectiles at once!",
+		"displayname": "Wiggle Shot",
+		"details": "Good luck dodging this one!",
 		"type": "weapon",
-		"script_path": WEAPON_SCRIPT_PATH + "triple_shot.gd"
+		"script_path": WEAPON_SCRIPT_PATH + "wiggle.gd"
 	},
 	"damage_up": {
 		"icon": ITEM_ICON_PATH + "damage_up.png",
@@ -31,4 +31,11 @@ const UPGRADES = {
 		"type": "item",
 		"script_path": null
 	},
-}
+	"shot_up": {
+		"icon": ITEM_ICON_PATH + "damage_up.png",
+		"displayname": "Shot Up",
+		"details": "Get more projectiles!",
+		"type": "repeatable",
+		"script_path": null
+	},
+	}

@@ -21,7 +21,11 @@ shape = SubResource("RectangleShape2D_rw5hl")
 metadata/_edit_lock_ = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(2.38419e-07, -4)
-scale = Vector2(0.5, 1.2)
+position = Vector2(-0.5, -10.5)
+scale = Vector2(0.75, 1.85)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

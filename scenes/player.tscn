@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player/progression_system.gd" id="3_y6lme"]
 [ext_resource type="Texture2D" uid="uid://docbb4d3cs5yx" path="res://assets/player/Alikorn_3.png" id="4_w5bhi"]
 [ext_resource type="Script" path="res://scripts/player/weapons/basic_shot.gd" id="5_ce4ai"]
-[ext_resource type="PackedScene" uid="uid://ccuitm3lymdxj" path="res://scenes/projectile.tscn" id="6_usf03"]
+[ext_resource type="Script" path="res://scripts/player/weapons/multiple_basic_shot.gd" id="8_54oa0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
@@ -55,7 +55,6 @@ script = ExtResource("3_y6lme")
 
 [node name="Shoot" type="Node" parent="."]
 script = ExtResource("5_ce4ai")
-projectile_scene = ExtResource("6_usf03")
 
 [node name="Ability1" type="Node" parent="."]
 
@@ -68,3 +67,6 @@ one_shot = true
 
 [node name="ProgressionSystem2" type="Node" parent="."]
 script = ExtResource("3_y6lme")
+
+[node name="Basic_shot" type="Node" parent="."]
+script = ExtResource("8_54oa0")

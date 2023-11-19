@@ -11,6 +11,10 @@ var screen_size: Vector2
 # SHOOTING
 @onready var shoot_node: Node = $Shoot
 @onready var shot_cooldown: Timer = $ShotCooldown
+@onready var basic_shot: Node = $Basic_shot
+@onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
+var shot_number: int = 1
+
 
 # ABILITIES
 @onready var ability_1_node: Node = $Ability1
@@ -22,16 +26,19 @@ var screen_size: Vector2
 @export var max_upgrade_options: int = 3
 @export var upgrade_option: PackedScene
 
+
+
+
 var collected_upgrades = []
 var upgrade_options = []
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	$AnimatedSprite2D.play()
 	
 func _process(delta: float) -> void:
 	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
-		shoot_node.shoot()
-	$AnimatedSprite2D.play()
+		basic_shot.shoot(shot_number, projectile)
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -47,22 +54,21 @@ func _physics_process(delta: float) -> void:
 	
   
 func upgrade_player(upgrade) -> void:
+
 	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
-		shoot_node.queue_free()
-		shoot_node = Node.new()
-		shoot_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
-		add_child(shoot_node)
+		projectile.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
 	elif UpgradeDb.UPGRADES[upgrade]["type"] == "ability":
 		ability_1_node.queue_free()
 		ability_1_node = Node.new()
 		ability_1_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
-	
-	collected_upgrades.append(upgrade)
+	elif upgrade == "shot_up":
+		shot_number+=1
+	if UpgradeDb.UPGRADES[upgrade]["type"] != "repeatable":
+		collected_upgrades.append(upgrade)
 	upgrade_options.clear()
 	for child in upgrade_screen_ui.get_child(0).get_children():
 		child.queue_free()
 	upgrade_screen_ui.visible = false
-	#get_tree().paused = false
 	
 func get_random_item():
 	var item_list = []
@@ -75,7 +81,8 @@ func get_random_item():
 			item_list.append(item)
 	if item_list.size() > 0:
 		var random_item = item_list.pick_random()
-		upgrade_options.append(random_item)
+		if UpgradeDb.UPGRADES[random_item]["type"] != "repeatable":
+			upgrade_options.append(random_item)
 		return random_item
 	else:
 		return null
@@ -88,7 +95,7 @@ func level_up():
 		option_choice.item = get_random_item()
 		upgrade_screen_ui.get_child(0).add_child(option_choice)
 		options += 1
-	#get_tree().paused = true
+	get_tree().paused = true
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
