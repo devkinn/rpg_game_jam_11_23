@@ -1,4 +1,6 @@
+
 [gd_scene load_steps=11 format=3 uid="uid://dlhra2v7ybiop"]
+
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
 [ext_resource type="Texture2D" uid="uid://7gx3qbfatamc" path="res://assets/player/Alikorn.png" id="2_l7d55"]
@@ -8,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://docbb4d3cs5yx" path="res://assets/player/Alikorn_3.png" id="4_w5bhi"]
 [ext_resource type="Script" path="res://scripts/player/weapons/basic_shot.gd" id="5_ce4ai"]
 [ext_resource type="Script" path="res://scripts/player/weapons/multiple_basic_shot.gd" id="8_54oa0"]
+
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
@@ -67,6 +70,7 @@ one_shot = true
 
 [node name="ProgressionSystem2" type="Node" parent="."]
 script = ExtResource("3_y6lme")
+
 
 [node name="Basic_shot" type="Node" parent="."]
 script = ExtResource("8_54oa0")

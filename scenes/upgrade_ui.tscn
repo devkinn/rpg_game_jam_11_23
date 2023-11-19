@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/upgrade_ui.gd" id="1_5h2r7"]
 
+[ext_resource type="Texture2D" uid="uid://mcbiu5ye0ol8" path="res://icon.svg" id="1_d11i6"]
+
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ewad"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_574yr"]
