@@ -12,6 +12,7 @@ font_size = 14
 font_size = 9
 
 [node name="Upgrade_UI" type="Button"]
+process_mode = 3
 offset_right = 255.0
 offset_bottom = 75.0
 size_flags_vertical = 3

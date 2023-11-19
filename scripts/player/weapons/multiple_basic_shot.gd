@@ -6,6 +6,7 @@ extends Node
 @onready var projectile_scene: PackedScene = preload("res://scenes/projectile.tscn")
 @onready var main: Node = $"../.."
 
+var dispersion: float = PI/3
 var projectile_speed: float = 500.0
 var velocity = Vector2(0.0, -projectile_speed)
 
@@ -24,8 +25,8 @@ func shoot(n):
 		main.add_child(projectile)		
 	else:
 		var projectiles: int = 0
-		var start_rotation: float = -PI / 6
-		var between_rotation: float = (-start_rotation)*2/(n-1)
+		var start_rotation: float = -dispersion/2
+		var between_rotation: float = dispersion/(n-1)
 		
 		while projectiles < n:
 

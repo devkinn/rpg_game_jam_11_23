@@ -97,7 +97,7 @@ func level_up():
 		option_choice.item = get_random_item()
 		upgrade_screen_ui.get_child(0).add_child(option_choice)
 		options += 1
-	#get_tree().paused = true
+	get_tree().paused = true
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
