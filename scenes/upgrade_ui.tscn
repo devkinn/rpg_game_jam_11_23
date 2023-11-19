@@ -1,7 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlufhcyyrwgc1"]
 
 [ext_resource type="Script" path="res://scripts/upgrade_ui.gd" id="1_5h2r7"]
-[ext_resource type="Texture2D" uid="uid://cn7lryv2a28lw" path="res://icon.svg" id="1_d11i6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ewad"]
+load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_574yr"]
 font_size = 14
@@ -21,7 +23,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = 72.0
 offset_bottom = 69.0
-texture = ExtResource("1_d11i6")
+texture = SubResource("CompressedTexture2D_2ewad")
 expand_mode = 1
 
 [node name="Name" type="Label" parent="."]

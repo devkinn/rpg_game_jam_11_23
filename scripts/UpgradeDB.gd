@@ -31,4 +31,11 @@ const UPGRADES = {
 		"type": "item",
 		"script_path": null
 	},
-}
+	"shot_up": {
+		"icon": ITEM_ICON_PATH + "damage_up.png",
+		"displayname": "Shot Up",
+		"details": "Get more projectiles!",
+		"type": "repeatable",
+		"script_path": null
+	},
+	}
