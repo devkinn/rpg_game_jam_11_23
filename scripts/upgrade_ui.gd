@@ -22,3 +22,4 @@ func _ready() -> void:
 
 func _on_pressed() -> void:
 	emit_signal("upgrade_selected", item)
+	get_tree().paused = false

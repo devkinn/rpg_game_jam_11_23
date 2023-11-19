@@ -4,18 +4,20 @@ extends CharacterBody2D
 @export var speed: float = 300.0
 @export var friction: float = 7.0
 @export var acceleration: float = 10.0
-@onready var single_fire = [$ProjectileStartPoint]
-@onready var double_fire = [$DoubleStartPoint1,$DoubleStartPoint2]
-@onready var triple_fire = [$DoubleStartPoint1,$ProjectileStartPoint,$DoubleStartPoint2]
-@onready var shooting_mode = [single_fire, double_fire, triple_fire]
-@onready var shoot_cooldown: Timer = $ShootCooldown
-@export var projectile_scene: PackedScene
-@export var projectile_speed = 500.0
 
-
-var mode = 0
 var direction: Vector2
 var screen_size: Vector2
+
+# SHOOTING
+@onready var shoot_node: Node = $Shoot
+@onready var shot_cooldown: Timer = $ShotCooldown
+@onready var basic_shot: Node = $Basic_shot
+@onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
+var shot_number: int = 1
+
+
+# ABILITIES
+@onready var ability_1_node: Node = $Ability1
 
 # UPGRADES
 @onready var progression_system: Node = $ProgressionSystem
@@ -24,12 +26,19 @@ var screen_size: Vector2
 @export var max_upgrade_options: int = 3
 @export var upgrade_option: PackedScene
 
+
+
+
 var collected_upgrades = []
 var upgrade_options = []
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	$AnimatedSprite2D.play()
+	
+func _process(delta: float) -> void:
+	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
+		basic_shot.shoot(shot_number, projectile)
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -43,36 +52,23 @@ func _physics_process(delta: float) -> void:
 	position = position.clamp(Vector2.ZERO, screen_size)
 	move_and_slide()
 	
-	if(Input.is_action_pressed("shoot") and shoot_cooldown.is_stopped()):
-		shoot()
-	
-func shoot():
-	for x in shooting_mode[mode]:
-		var projectile = projectile_scene.instantiate()
-		projectile.position = x.position
-		
-		var velosity = Vector2(0.0, -projectile_speed)
-		projectile.linear_velocity = velosity
-		add_child(projectile)
-	shoot_cooldown.start()	
-			
-func _unhandled_input(event):
-	if(event.is_action_pressed("upgrade")):
-		mode = (mode+1)%shooting_mode.size()
-	if(event.is_action_pressed("attack_speed_up")):
-		shoot_cooldown.wait_time /= 2
-	if(event.is_action_pressed("attack_speed_down")):
-		shoot_cooldown.wait_time *= 2
-	
-
-
-	
+  
 func upgrade_player(upgrade) -> void:
+
+	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
+		projectile.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+	elif UpgradeDb.UPGRADES[upgrade]["type"] == "ability":
+		ability_1_node.queue_free()
+		ability_1_node = Node.new()
+		ability_1_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
+	elif upgrade == "shot_up":
+		shot_number+=1
+	if UpgradeDb.UPGRADES[upgrade]["type"] != "repeatable":
+		collected_upgrades.append(upgrade)
 	upgrade_options.clear()
 	for child in upgrade_screen_ui.get_child(0).get_children():
 		child.queue_free()
 	upgrade_screen_ui.visible = false
-	#get_tree().paused = false
 	
 func get_random_item():
 	var item_list = []
@@ -85,7 +81,8 @@ func get_random_item():
 			item_list.append(item)
 	if item_list.size() > 0:
 		var random_item = item_list.pick_random()
-		upgrade_options.append(random_item)
+		if UpgradeDb.UPGRADES[random_item]["type"] != "repeatable":
+			upgrade_options.append(random_item)
 		return random_item
 	else:
 		return null
@@ -98,7 +95,7 @@ func level_up():
 		option_choice.item = get_random_item()
 		upgrade_screen_ui.get_child(0).add_child(option_choice)
 		options += 1
-	#get_tree().paused = true
+	get_tree().paused = true
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))

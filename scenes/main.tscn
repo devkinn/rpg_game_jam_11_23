@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=5 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
@@ -12,7 +12,9 @@ script = ExtResource("1_liftv")
 [node name="User_Interface" parent="." instance=ExtResource("5_s1wct")]
 process_mode = 3
 
+
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
+
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
