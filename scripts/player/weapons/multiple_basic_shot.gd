@@ -3,24 +3,22 @@ extends Node
 @onready var shot_cooldown: Timer = $"../ShotCooldown"
 @onready var projectile_start_point: Marker2D = $"../ProjectileStartPoint"
 @onready var player: CharacterBody2D = $".."
-@onready var projectile_scene: PackedScene = preload("res://scenes/projectile.tscn")
 @onready var main: Node = $"../.."
 
 var dispersion: float = PI/3
 var projectile_speed: float = 500.0
 var velocity = Vector2(0.0, -projectile_speed)
 
-func shoot(n):
+func shoot(n, rigidBody):
 	var projectile
-	
 	if n==1:
-		projectile = prepare()
+		projectile = prepare(rigidBody)
 		main.add_child(projectile)
 	elif n==2:
-		projectile = prepare()
+		projectile = prepare(rigidBody)
 		projectile.position += Vector2(-5,0)
 		main.add_child(projectile)
-		projectile = prepare()
+		projectile = prepare(rigidBody)
 		projectile.position += Vector2( 10,0)
 		main.add_child(projectile)		
 	else:
@@ -30,7 +28,7 @@ func shoot(n):
 		
 		while projectiles < n:
 
-			projectile = prepare()
+			projectile = prepare(rigidBody)
 			projectile.rotation = start_rotation
 			projectile.linear_velocity = velocity.rotated(start_rotation)
 			main.add_child(projectile)
@@ -40,8 +38,8 @@ func shoot(n):
 	
 	shot_cooldown.start()
 
-func prepare():
-	var projectile: RigidBody2D = projectile_scene.instantiate()
+func prepare(p):
+	var projectile: RigidBody2D = p.duplicate()
 	projectile.position = player.position + projectile_start_point.position
 	projectile.linear_velocity = velocity
 	return projectile

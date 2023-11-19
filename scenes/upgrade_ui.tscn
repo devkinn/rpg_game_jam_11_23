@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://scripts/upgrade_ui.gd" id="1_5h2r7"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ewad"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [sub_resource type="LabelSettings" id="LabelSettings_574yr"]
 font_size = 14
@@ -13,6 +12,7 @@ font_size = 9
 
 [node name="Upgrade_UI" type="Button"]
 process_mode = 3
+z_index = 1
 offset_right = 255.0
 offset_bottom = 75.0
 size_flags_vertical = 3
