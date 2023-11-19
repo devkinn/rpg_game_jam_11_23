@@ -1,0 +1,545 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpgxrmbbwl7oi"]
+
+[ext_resource type="Script" path="res://scripts/User_Interface.gd" id="1_jw4f7"]
+[ext_resource type="Texture2D" uid="uid://cm0og8xdpyltm" path="res://assets/backbround/IslandsMap1.png" id="2_b07jj"]
+[ext_resource type="Texture2D" uid="uid://dhqluubyiqw70" path="res://assets/user_interface/ustawienia_tlo.png" id="2_xa0w0"]
+[ext_resource type="Texture2D" uid="uid://cdyueq5h6ek34" path="res://assets/user_interface/pauza.svg" id="3_0a440"]
+[ext_resource type="Texture2D" uid="uid://c1bj7mqr5o8hh" path="res://assets/user_interface/zebatka.png" id="3_7746m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pucu4"]
+
+[node name="User_Interface" type="CanvasLayer"]
+script = ExtResource("1_jw4f7")
+
+[node name="menu_start" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="menu_start"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 720.0
+texture = ExtResource("2_b07jj")
+expand_mode = 4
+
+[node name="start_button" type="Button" parent="menu_start"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 496.0
+offset_right = 360.0
+offset_bottom = 608.0
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="ustawienia_button" type="TextureButton" parent="menu_start"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 16.0
+offset_right = 461.0
+offset_bottom = 77.0
+texture_normal = ExtResource("3_7746m")
+
+[node name="Title" type="Label" parent="menu_start"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 264.0
+offset_right = 451.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Title of this game"
+
+[node name="Ustawienia" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_right = 0.0833333
+anchor_bottom = 0.0555556
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="tlo_ustawien" type="TextureRect" parent="Ustawienia"]
+layout_mode = 0
+offset_left = -135.0
+offset_top = -109.0
+offset_right = 564.0
+offset_bottom = 829.0
+texture = ExtResource("2_xa0w0")
+expand_mode = 3
+
+[node name="settings_button" type="Button" parent="Ustawienia"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 75.0
+offset_right = 244.0
+offset_bottom = 162.0
+focus_mode = 0
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Settings"
+flat = true
+
+[node name="settings" type="Control" parent="Ustawienia"]
+anchors_preset = 0
+metadata/_edit_group_ = true
+
+[node name="audio_label" type="Label" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 172.0
+offset_right = 281.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Audio"
+
+[node name="music_label" type="Label" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 222.0
+offset_right = 167.0
+offset_bottom = 254.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Music"
+
+[node name="music_slider" type="HSlider" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 256.0
+offset_right = 396.0
+offset_bottom = 272.0
+min_value = -80.0
+max_value = 6.0
+
+[node name="sfx_label" type="Label" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 291.0
+offset_right = 223.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Sound Effects"
+
+[node name="sfx_slider" type="HSlider" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 325.0
+offset_right = 396.0
+offset_bottom = 341.0
+min_value = -80.0
+max_value = 6.0
+
+[node name="Controls" type="Control" parent="Ustawienia"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_group_ = true
+
+[node name="up_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 184.0
+offset_right = 136.0
+offset_bottom = 232.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "W"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/up_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Move up"
+
+[node name="edit_button1" type="Button" parent="Ustawienia/Controls/up_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="down_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 240.0
+offset_right = 136.0
+offset_bottom = 288.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "S"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/down_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Move down"
+
+[node name="edit_button2" type="Button" parent="Ustawienia/Controls/down_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="left_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 296.0
+offset_right = 136.0
+offset_bottom = 344.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "A"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/left_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Move left"
+
+[node name="edit_button3" type="Button" parent="Ustawienia/Controls/left_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="right_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 352.0
+offset_right = 136.0
+offset_bottom = 400.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "D"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/right_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Move right"
+
+[node name="edit_button4" type="Button" parent="Ustawienia/Controls/right_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="shoot_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 408.0
+offset_right = 136.0
+offset_bottom = 456.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "Space"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/shoot_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Shoot"
+
+[node name="edit_button5" type="Button" parent="Ustawienia/Controls/shoot_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="upgrade_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 464.0
+offset_right = 136.0
+offset_bottom = 512.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "Z"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/upgrade_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Upgrade"
+
+[node name="edit_button6" type="Button" parent="Ustawienia/Controls/upgrade_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="attackspeedup_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 520.0
+offset_right = 136.0
+offset_bottom = 568.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "X"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/attackspeedup_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Attack speed up"
+
+[node name="edit_button7" type="Button" parent="Ustawienia/Controls/attackspeedup_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="attackspeeddown_bind" type="Button" parent="Ustawienia/Controls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 576.0
+offset_right = 136.0
+offset_bottom = 624.0
+focus_mode = 0
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+text = "C"
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Ustawienia/Controls/attackspeeddown_bind"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 8.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Attack speed down"
+
+[node name="edit_button8" type="Button" parent="Ustawienia/Controls/attackspeeddown_bind"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 8.0
+offset_right = 325.0
+offset_bottom = 39.0
+focus_mode = 0
+text = "Edit"
+
+[node name="zmien_klawisz" type="ColorRect" parent="Ustawienia/Controls"]
+visible = false
+layout_mode = 0
+offset_left = 80.0
+offset_top = 287.0
+offset_right = 411.0
+offset_bottom = 399.0
+color = Color(0, 0, 0, 0.8)
+metadata/_edit_group_ = true
+
+[node name="Label2" type="Label" parent="Ustawienia/Controls/zmien_klawisz"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 23.0
+offset_right = 324.0
+offset_bottom = 93.0
+theme_override_colors/font_shadow_color = Color(0.737255, 0.737255, 0.737255, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Press a new key for move up action"
+autowrap_mode = 2
+
+[node name="controls_button" type="Button" parent="Ustawienia"]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 74.0
+offset_right = 436.0
+offset_bottom = 160.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pucu4")
+text = "Controls"
+flat = true
+
+[node name="close_button" type="Button" parent="Ustawienia"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 624.0
+offset_right = 280.0
+offset_bottom = 660.0
+focus_mode = 0
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Close"
+flat = true
+
+[node name="Line2D" type="Line2D" parent="Ustawienia"]
+position = Vector2(46, 166)
+scale = Vector2(1.136, 0.728)
+points = PackedVector2Array(-1, -3, 347, -3)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="Ustawienia"]
+position = Vector2(243, 70)
+scale = Vector2(-0.724047, 0.565457)
+points = PackedVector2Array(0, 1, 0, 167.927)
+default_color = Color(0, 0, 0, 1)
+
+[node name="pause_button" type="TextureButton" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.833333
+anchor_top = 0.0222222
+anchor_right = 0.960417
+anchor_bottom = 0.105556
+texture_normal = ExtResource("3_0a440")
+metadata/_edit_use_anchors_ = true
+
+[node name="menu_pauzy" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_right = 0.0833333
+anchor_bottom = 0.0555556
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="menu_pauzy"]
+layout_mode = 0
+anchor_left = -1.6
+anchor_top = 3.6
+anchor_right = 12.4
+anchor_bottom = 13.2
+texture = ExtResource("2_xa0w0")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="resume_button" type="Button" parent="menu_pauzy"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 222.0
+offset_right = 392.0
+offset_bottom = 335.0
+focus_mode = 0
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "RESUME"
+flat = true
+
+[node name="open_settings_button" type="Button" parent="menu_pauzy"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 344.0
+offset_right = 392.0
+offset_bottom = 456.0
+focus_mode = 0
+mouse_force_pass_scroll_events = false
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "SETTINGS"
+flat = true
+
+[node name="Line2D" type="Line2D" parent="menu_pauzy"]
+position = Vector2(80, 341)
+scale = Vector2(0.906566, 0.595644)
+points = PackedVector2Array(-1, -3, 347, -3)
+default_color = Color(0, 0, 0, 1)
+
+[connection signal="pressed" from="menu_start/start_button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="menu_start/ustawienia_button" to="." method="_on_ustawienia_button_pressed"]
+[connection signal="pressed" from="Ustawienia/settings_button" to="." method="_on_settings_button_pressed"]
+[connection signal="value_changed" from="Ustawienia/settings/music_slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Ustawienia/settings/sfx_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Ustawienia/Controls/up_bind/edit_button1" to="." method="_on_edit_button_1_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/down_bind/edit_button2" to="." method="_on_edit_button_2_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/left_bind/edit_button3" to="." method="_on_edit_button_3_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/right_bind/edit_button4" to="." method="_on_edit_button_4_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/shoot_bind/edit_button5" to="." method="_on_edit_button_5_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/upgrade_bind/edit_button6" to="." method="_on_edit_button_6_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/attackspeedup_bind/edit_button7" to="." method="_on_edit_button_7_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/attackspeeddown_bind/edit_button8" to="." method="_on_edit_button_8_pressed"]
+[connection signal="pressed" from="Ustawienia/controls_button" to="." method="_on_controls_button_pressed"]
+[connection signal="pressed" from="Ustawienia/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="pause_button" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="menu_pauzy/resume_button" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="menu_pauzy/open_settings_button" to="." method="_on_open_settings_button_pressed"]

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16mm"
+   height="16mm"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect360"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,1.8299033,0,1 @ F,0,0,1,0,2.1952403,0,1 @ F,0,1,1,0,1.8299033,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:label="Warstwa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.863475;stroke-linecap:square;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 2.2724003,2.530379 0.024166,10.584887 a 1.2400094,1.2400094 29.329674 0 0 1.8825468,1.057719 L 12.864002,8.9111905 a 1.1007264,1.1007264 89.817977 0 0 -0.006,-1.886453 L 3.8392865,1.6387254 A 1.0358027,1.0358027 150.35749 0 0 2.2724003,2.530379 Z"
+       id="path360"
+       inkscape:path-effect="#path-effect360"
+       inkscape:original-d="M 2.2682224,0.70048046 2.3015787,15.310501 14.429073,7.9629824 Z"
+       sodipodi:nodetypes="cccc"
+       transform="matrix(1.1846504,0,0,1.1578292,-1.1707616,-1.1496497)" />
+  </g>
+</svg>
