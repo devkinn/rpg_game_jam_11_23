@@ -150,6 +150,7 @@ func _on_ustawienia_button_pressed():
 	
 func game_over():
 	$menu_start.show()
-	$menu_start/Title.text = "Game Over"
+	$menu_start/Title.hide()
+	$menu_start/Title2.show()
 	$menu_start/start_button.text = "PLAY AGAIN"
 	$pause_button.hide()
