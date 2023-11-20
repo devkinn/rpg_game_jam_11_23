@@ -12,6 +12,7 @@ metadata/_edit_horizontal_guides_ = [896.0]
 motion_mirroring = Vector2(0, 960)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+show_behind_parent = true
 position = Vector2(240, 480)
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_3fyln")

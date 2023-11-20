@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=8 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
 [ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
 [ext_resource type="PackedScene" uid="uid://bpgxrmbbwl7oi" path="res://scenes/user_interface.tscn" id="5_s1wct"]
 [ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_tr1x5"]
+[ext_resource type="Texture2D" uid="uid://dtb4bjwtdxtmk" path="res://assets/player/Smok.png" id="6_sid8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y857w"]
+size = Vector2(153, 120)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
@@ -12,9 +16,8 @@ script = ExtResource("1_liftv")
 [node name="User_Interface" parent="." instance=ExtResource("5_s1wct")]
 process_mode = 3
 
-
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
-
+collision_mask = 4
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
@@ -29,6 +32,19 @@ offset_bottom = 672.0
 text = "Gain Exp"
 
 [node name="upgrade_screen_ui" parent="." groups=["upgrade_panel"] instance=ExtResource("5_tr1x5")]
-visible = false
 
+[node name="dammy" type="RigidBody2D" parent="."]
+position = Vector2(238, 259)
+collision_layer = 4
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="dammy"]
+texture = ExtResource("6_sid8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dammy"]
+position = Vector2(1.5, -2)
+shape = SubResource("RectangleShape2D_y857w")
+
+[connection signal="game_over" from="Player" to="." method="game_over"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
