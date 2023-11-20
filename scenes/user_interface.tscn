@@ -13,10 +13,10 @@ script = ExtResource("1_jw4f7")
 
 [node name="menu_start" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 0.0833333
+anchor_bottom = 0.0555556
 metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="menu_start"]
 layout_mode = 0
@@ -24,6 +24,7 @@ offset_right = 480.0
 offset_bottom = 720.0
 texture = ExtResource("2_b07jj")
 expand_mode = 4
+metadata/_edit_group_ = true
 
 [node name="start_button" type="Button" parent="menu_start"]
 layout_mode = 0
@@ -51,6 +52,17 @@ offset_bottom = 360.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "Title of this game"
+
+[node name="Title2" type="Label" parent="menu_start"]
+visible = false
+layout_mode = 0
+offset_left = 96.0
+offset_top = 264.0
+offset_right = 382.0
+offset_bottom = 336.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
 
 [node name="Ustawienia" type="Control" parent="."]
 visible = false
