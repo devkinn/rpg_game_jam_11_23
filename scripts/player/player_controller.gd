@@ -44,6 +44,7 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if(Input.is_action_pressed("shoot") and shot_cooldown.is_stopped()):
+		get_parent().get_node("Sounds/Shoot").play()
 		basic_shot.shoot(shot_number, projectile)
 	if(!immune.is_stopped()):
 		if(blink_switch.is_stopped()):

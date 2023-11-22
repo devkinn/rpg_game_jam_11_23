@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=12 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_tr1x5"]
 [ext_resource type="Texture2D" uid="uid://dtb4bjwtdxtmk" path="res://assets/player/Smok.png" id="6_sid8b"]
 [ext_resource type="Texture2D" uid="uid://c0qmsi2mhsmgn" path="res://assets/user_interface/serce.png" id="7_0u56l"]
+[ext_resource type="AudioStream" uid="uid://ck25y5hg7qll2" path="res://assets/sounds/Fire_40.wav" id="8_f6rnu"]
+[ext_resource type="AudioStream" uid="uid://c7278v7880sqw" path="res://assets/sounds/04_Fire_explosion_04_medium.wav" id="9_axmau"]
+[ext_resource type="AudioStream" uid="uid://o7xk4k0qwso0" path="res://assets/sounds/2016_ Clement Panchout_ Life is full of Joy.wav" id="10_qnfis"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y857w"]
 size = Vector2(153, 120)
@@ -33,6 +36,7 @@ offset_bottom = 672.0
 text = "Gain Exp"
 
 [node name="upgrade_screen_ui" parent="." groups=["upgrade_panel"] instance=ExtResource("5_tr1x5")]
+visible = false
 
 [node name="dammy" type="RigidBody2D" parent="."]
 position = Vector2(238, 259)
@@ -66,6 +70,24 @@ offset_right = 44.0
 offset_bottom = 52.0
 theme_override_font_sizes/font_size = 30
 text = "3"
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("8_f6rnu")
+volume_db = -10.0
+mix_target = 2
+bus = &"SFX"
+
+[node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("9_axmau")
+volume_db = -10.0
+
+[node name="Background" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("10_qnfis")
+volume_db = -20.0
+autoplay = true
+bus = &"Music"
 
 [connection signal="lost" from="." to="User_Interface" method="game_over"]
 [connection signal="game_over" from="Player" to="." method="game_over"]
