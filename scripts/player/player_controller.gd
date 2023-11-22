@@ -19,6 +19,7 @@ var screen_size: Vector2
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var basic_shot: Node = $Basic_shot
 @onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
+var damage: float = 10
 var shot_number: int = 1
 
 

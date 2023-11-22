@@ -5,6 +5,14 @@ signal lost
 @onready var player: CharacterBody2D = $Player
 @onready var player_start_position: Marker2D = $PlayerStartPosition
 @onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
+@onready var music: AudioStreamPlayer = $Sounds/Background
+
+@onready var spawn: Timer = $MobSpawn
+@onready var mob_spawn_location: PathFollow2D = $Spawn_path/Follow
+@onready var enemies =[
+	preload("res://scenes/gargoyle.tscn"),
+	preload("res://scenes/ghost.tscn")
+]
 func _ready() -> void:
 	player.position = player_start_position.position
 	$HealthIcon/healthvalue.text = str($Player.Health)
@@ -23,6 +31,23 @@ func game_over():
 	projectile.set_script(load("res://scripts/player/projectile.gd"))
 	player.get_node("Immunity").stop()
 	player.position = player_start_position.position
+	music.stop()
 	
 	
 
+
+
+func start_game():
+	spawn.start()
+	if(!music.playing):
+		music.play() # Replace with function body.
+
+
+func mob_spawn():
+	var mob = enemies[randi_range(0, enemies.size()-1)].instantiate()
+	mob_spawn_location.progress_ratio = randf_range(0,1)
+	mob.position = mob_spawn_location.position
+	
+	mob.visible =true
+	
+	add_child(mob.duplicate())
