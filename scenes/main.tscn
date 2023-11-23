@@ -72,6 +72,7 @@ bus = &"SFX"
 [node name="Hit" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("9_axmau")
 volume_db = -10.0
+bus = &"SFX"
 
 [node name="Background" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_qnfis")

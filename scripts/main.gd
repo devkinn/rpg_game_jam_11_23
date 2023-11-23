@@ -34,12 +34,18 @@ func game_over():
 	projectile.set_script(load("res://scripts/player/projectile.gd"))
 	player.get_node("Immunity").stop()
 	player.position = player_start_position.position
+	spawn.stop()
 	music.stop()
+	gets_harder.stop()
+	spawn.wait_time = 3
 	hardnes = 0
+	get_tree().call_group("enemies","queue_free")
 
 
 
 func start_game():
+	player.Health = 3
+	player.position = player_start_position.position
 	spawn.start()
 	gets_harder.start()
 	if(!music.playing):
