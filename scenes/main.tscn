@@ -1,18 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=13 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
 [ext_resource type="PackedScene" uid="uid://8vmhbqct7a8x" path="res://scenes/background.tscn" id="3_g6601"]
 [ext_resource type="PackedScene" uid="uid://bpgxrmbbwl7oi" path="res://scenes/user_interface.tscn" id="5_s1wct"]
 [ext_resource type="PackedScene" uid="uid://dmokebaejpjd2" path="res://scenes/upgrade_screen_ui.tscn" id="5_tr1x5"]
-[ext_resource type="Texture2D" uid="uid://dtb4bjwtdxtmk" path="res://assets/player/Smok.png" id="6_sid8b"]
 [ext_resource type="Texture2D" uid="uid://c0qmsi2mhsmgn" path="res://assets/user_interface/serce.png" id="7_0u56l"]
 [ext_resource type="AudioStream" uid="uid://ck25y5hg7qll2" path="res://assets/sounds/Fire_40.wav" id="8_f6rnu"]
 [ext_resource type="AudioStream" uid="uid://c7278v7880sqw" path="res://assets/sounds/04_Fire_explosion_04_medium.wav" id="9_axmau"]
+[ext_resource type="AudioStream" uid="uid://dx6tgp3m5hgpx" path="res://assets/sounds/Gargoyle_death.wav" id="10_lrbxi"]
 [ext_resource type="AudioStream" uid="uid://o7xk4k0qwso0" path="res://assets/sounds/2016_ Clement Panchout_ Life is full of Joy.wav" id="10_qnfis"]
+[ext_resource type="AudioStream" uid="uid://dbcw0imetug07" path="res://assets/sounds/Ghost_death.wav" id="11_o4knt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y857w"]
-size = Vector2(153, 120)
+[sub_resource type="Curve2D" id="Curve2D_j4mmk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 424, 0)
+}
+point_count = 2
 
 [node name="Main" type="Node"]
 script = ExtResource("1_liftv")
@@ -21,7 +25,6 @@ script = ExtResource("1_liftv")
 process_mode = 3
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_wqq3u")]
-collision_mask = 4
 
 [node name="PlayerStartPosition" type="Marker2D" parent="."]
 position = Vector2(240, 512)
@@ -37,19 +40,6 @@ text = "Gain Exp"
 
 [node name="upgrade_screen_ui" parent="." groups=["upgrade_panel"] instance=ExtResource("5_tr1x5")]
 visible = false
-
-[node name="dammy" type="RigidBody2D" parent="."]
-position = Vector2(238, 259)
-collision_layer = 4
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="dammy"]
-texture = ExtResource("6_sid8b")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="dammy"]
-position = Vector2(1.5, -2)
-shape = SubResource("RectangleShape2D_y857w")
 
 [node name="HealthIcon" type="TextureRect" parent="."]
 anchors_preset = -1
@@ -89,6 +79,36 @@ volume_db = -20.0
 autoplay = true
 bus = &"Music"
 
+[node name="Gargoyle" type="Node" parent="Sounds"]
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds/Gargoyle"]
+stream = ExtResource("10_lrbxi")
+bus = &"SFX"
+
+[node name="Witch" type="Node" parent="Sounds"]
+
+[node name="Ghost" type="Node" parent="Sounds"]
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds/Ghost"]
+stream = ExtResource("11_o4knt")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Spawn_path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_j4mmk")
+
+[node name="Follow" type="PathFollow2D" parent="Spawn_path"]
+position = Vector2(64, 0)
+
+[node name="MobSpawn" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Gets_harder" type="Timer" parent="."]
+wait_time = 20.0
+
 [connection signal="lost" from="." to="User_Interface" method="game_over"]
+[connection signal="start_game" from="User_Interface" to="." method="start_game"]
 [connection signal="game_over" from="Player" to="." method="game_over"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
+[connection signal="timeout" from="MobSpawn" to="." method="mob_spawn"]
+[connection signal="timeout" from="Gets_harder" to="." method="_on_gets_harder"]

@@ -19,6 +19,7 @@ var screen_size: Vector2
 @onready var shot_cooldown: Timer = $ShotCooldown
 @onready var basic_shot: Node = $Basic_shot
 @onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
+var damage: float = 10
 var shot_number: int = 1
 
 
@@ -50,7 +51,9 @@ func _process(delta: float) -> void:
 		if(blink_switch.is_stopped()):
 			visible = !visible
 			blink_switch.start()
-		
+	else:
+		visible = true
+
 
 func _physics_process(delta: float) -> void:
 	direction.x = Input.get_axis("move_left", "move_right")
@@ -78,7 +81,11 @@ func upgrade_player(upgrade) -> void:
 		ability_1_node.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
 	elif upgrade == "shot_up":
 		shot_number+=1
-	if UpgradeDb.UPGRADES[upgrade]["type"] != "repeatable":
+	elif upgrade == "heal":
+		Health+=1
+	elif upgrade == "damage_up":
+		damage += 5
+	if UpgradeDb.UPGRADES[upgrade]["type"] != "item":
 		collected_upgrades.append(upgrade)
 	upgrade_options.clear()
 	for child in upgrade_screen_ui.get_child(0).get_children():

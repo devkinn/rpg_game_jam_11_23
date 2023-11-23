@@ -27,15 +27,15 @@ const UPGRADES = {
 	"heal": {
 		"icon": ITEM_ICON_PATH + "heal.png",
 		"displayname": "Apple",
-		"details": "Heals you for 20 hp",
+		"details": "HP UP!",
 		"type": "item",
 		"script_path": null
 	},
 	"shot_up": {
 		"icon": ITEM_ICON_PATH + "damage_up.png",
 		"displayname": "Shot Up",
-		"details": "Get more projectiles!",
-		"type": "repeatable",
+		"details": "Get more projectiles",
+		"type": "item",
 		"script_path": null
 	},
 	}
