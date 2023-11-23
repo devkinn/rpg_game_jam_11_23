@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlhra2v7ybiop"]
+[gd_scene load_steps=16 format=3 uid="uid://dlhra2v7ybiop"]
 
 [ext_resource type="Script" path="res://scripts/player/player_controller.gd" id="1_2pugp"]
 [ext_resource type="Texture2D" uid="uid://7gx3qbfatamc" path="res://assets/player/Alikorn.png" id="2_l7d55"]
@@ -6,7 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://dtbdpoxy7sh2a" path="res://assets/player/Alikorn_2.png" id="3_wwnlv"]
 [ext_resource type="Script" path="res://scripts/player/progression_system.gd" id="3_y6lme"]
 [ext_resource type="Texture2D" uid="uid://docbb4d3cs5yx" path="res://assets/player/Alikorn_3.png" id="4_w5bhi"]
+[ext_resource type="Texture2D" uid="uid://dtb4bjwtdxtmk" path="res://assets/player/Smok.png" id="6_sydq2"]
+[ext_resource type="Texture2D" uid="uid://bbp660npn4uhn" path="res://assets/player/Smok_2.png" id="7_pibuq"]
 [ext_resource type="Script" path="res://scripts/player/weapons/multiple_basic_shot.gd" id="8_54oa0"]
+[ext_resource type="Texture2D" uid="uid://cb10ln17ktdnm" path="res://assets/player/Smok_3.png" id="8_kbdp4"]
+[ext_resource type="Texture2D" uid="uid://c0tgvmfqxb2hl" path="res://assets/player/Pegaz.png" id="9_734s5"]
+[ext_resource type="Texture2D" uid="uid://cdyq5ud1l6pif" path="res://assets/player/Pegaz_2.png" id="10_838e4"]
+[ext_resource type="Texture2D" uid="uid://c1t6b7adj08ua" path="res://assets/player/Pegaz_3.png" id="11_u5exq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1qtpv"]
 animations = [{
@@ -26,6 +32,40 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_sydq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pibuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_kbdp4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pibuq")
+}],
+"loop": true,
+"name": &"dragon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_734s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_838e4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u5exq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_838e4")
+}],
+"loop": true,
+"name": &"pegaz",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h8rj8"]
@@ -40,7 +80,6 @@ metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1qtpv")
-frame_progress = 0.565571
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

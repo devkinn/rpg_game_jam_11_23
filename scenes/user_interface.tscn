@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpgxrmbbwl7oi"]
+[gd_scene load_steps=9 format=3 uid="uid://bpgxrmbbwl7oi"]
 
 [ext_resource type="Script" path="res://scripts/User_Interface.gd" id="1_jw4f7"]
 [ext_resource type="Texture2D" uid="uid://cm0og8xdpyltm" path="res://assets/backbround/IslandsMap1.png" id="2_b07jj"]
 [ext_resource type="Texture2D" uid="uid://dhqluubyiqw70" path="res://assets/user_interface/ustawienia_tlo.png" id="2_xa0w0"]
 [ext_resource type="Texture2D" uid="uid://cdyueq5h6ek34" path="res://assets/user_interface/pauza.svg" id="3_0a440"]
 [ext_resource type="Texture2D" uid="uid://c1bj7mqr5o8hh" path="res://assets/user_interface/zebatka.png" id="3_7746m"]
+[ext_resource type="Texture2D" uid="uid://budnv7naobwhj" path="res://assets/user_interface/lewo.png" id="4_nem74"]
+[ext_resource type="Texture2D" uid="uid://7gx3qbfatamc" path="res://assets/player/Alikorn.png" id="5_lhlw0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pucu4"]
 
@@ -35,14 +37,6 @@ offset_bottom = 608.0
 theme_override_font_sizes/font_size = 40
 text = "PLAY"
 
-[node name="ustawienia_button" type="TextureButton" parent="menu_start"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 16.0
-offset_right = 461.0
-offset_bottom = 77.0
-texture_normal = ExtResource("3_7746m")
-
 [node name="Title" type="Label" parent="menu_start"]
 layout_mode = 0
 offset_left = 34.0
@@ -69,8 +63,8 @@ visible = false
 layout_mode = 3
 anchor_right = 0.0833333
 anchor_bottom = 0.0555556
-metadata/_edit_group_ = true
 metadata/_edit_use_anchors_ = true
+metadata/_edit_group_ = true
 
 [node name="tlo_ustawien" type="TextureRect" parent="Ustawienia"]
 layout_mode = 0
@@ -96,6 +90,7 @@ flat = true
 
 [node name="settings" type="Control" parent="Ustawienia"]
 anchors_preset = 0
+metadata/_edit_use_anchors_ = true
 metadata/_edit_group_ = true
 
 [node name="audio_label" type="Label" parent="Ustawienia/settings"]
@@ -124,7 +119,7 @@ offset_left = 85.0
 offset_top = 256.0
 offset_right = 396.0
 offset_bottom = 272.0
-min_value = -80.0
+min_value = -40.0
 max_value = 6.0
 
 [node name="sfx_label" type="Label" parent="Ustawienia/settings"]
@@ -143,8 +138,45 @@ offset_left = 85.0
 offset_top = 325.0
 offset_right = 396.0
 offset_bottom = 341.0
-min_value = -80.0
+min_value = -40.0
 max_value = 6.0
+
+[node name="character_label" type="Label" parent="Ustawienia/settings"]
+layout_mode = 1
+offset_left = 184.0
+offset_top = 368.0
+offset_right = 304.0
+offset_bottom = 406.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Character"
+metadata/_edit_use_anchors_ = true
+
+[node name="lewo_button" type="TextureButton" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 432.0
+offset_right = 168.0
+offset_bottom = 472.0
+texture_normal = ExtResource("4_nem74")
+
+[node name="prawo_button" type="TextureButton" parent="Ustawienia/settings"]
+offset_left = 328.0
+offset_top = 432.0
+offset_right = 368.0
+offset_bottom = 472.0
+texture_normal = ExtResource("4_nem74")
+flip_h = true
+
+[node name="character" type="TextureRect" parent="Ustawienia/settings"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 416.0
+offset_right = 288.0
+offset_bottom = 496.0
+texture = ExtResource("5_lhlw0")
+expand_mode = 1
 
 [node name="Controls" type="Control" parent="Ustawienia"]
 visible = false
@@ -477,6 +509,15 @@ scale = Vector2(-0.724047, 0.565457)
 points = PackedVector2Array(0, 1, 0, 167.927)
 default_color = Color(0, 0, 0, 1)
 
+[node name="ustawienia_button" type="TextureButton" parent="."]
+anchors_preset = -1
+anchor_left = 0.833333
+anchor_top = 0.0222222
+anchor_right = 0.960417
+anchor_bottom = 0.106944
+texture_normal = ExtResource("3_7746m")
+metadata/_edit_use_anchors_ = true
+
 [node name="pause_button" type="TextureButton" parent="."]
 visible = false
 anchors_preset = -1
@@ -538,10 +579,11 @@ points = PackedVector2Array(-1, -3, 347, -3)
 default_color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="menu_start/start_button" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="menu_start/ustawienia_button" to="." method="_on_ustawienia_button_pressed"]
 [connection signal="pressed" from="Ustawienia/settings_button" to="." method="_on_settings_button_pressed"]
 [connection signal="value_changed" from="Ustawienia/settings/music_slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Ustawienia/settings/sfx_slider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Ustawienia/settings/lewo_button" to="." method="_on_lewo_button_pressed"]
+[connection signal="pressed" from="Ustawienia/settings/prawo_button" to="." method="_on_prawo_button_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/up_bind/edit_button1" to="." method="_on_edit_button_1_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/down_bind/edit_button2" to="." method="_on_edit_button_2_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/left_bind/edit_button3" to="." method="_on_edit_button_3_pressed"]
@@ -552,6 +594,7 @@ default_color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="Ustawienia/Controls/attackspeeddown_bind/edit_button8" to="." method="_on_edit_button_8_pressed"]
 [connection signal="pressed" from="Ustawienia/controls_button" to="." method="_on_controls_button_pressed"]
 [connection signal="pressed" from="Ustawienia/close_button" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="ustawienia_button" to="." method="_on_ustawienia_button_pressed"]
 [connection signal="pressed" from="pause_button" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="menu_pauzy/resume_button" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="menu_pauzy/open_settings_button" to="." method="_on_open_settings_button_pressed"]

@@ -2,8 +2,9 @@ extends CanvasLayer
 
 signal start_game
 
+@export var external_pause: bool = false
 var e
-var k = false
+var ustawienia_open = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -94,10 +95,12 @@ func _on_edit_button_8_pressed():
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="attack_speed_down"
 
-
+var pausable = false
 func _on_texture_button_pressed():
-	get_tree().paused = not get_tree().paused
-	if(get_tree().paused==true):
+	pausable = not pausable
+	if external_pause == false:
+		get_tree().paused = not get_tree().paused
+	if(pausable==true):
 		$menu_pauzy.show()
 		$pause_button.hide()
 		$pause_button.texture_normal = ResourceLoader.load("res://assets/user_interface/play.svg")
@@ -109,19 +112,20 @@ func _on_texture_button_pressed():
 		$pause_button.show()
 		$Ustawienia.hide()
 		
-
-
 func _on_close_button_pressed():
 	if get_tree().paused == true:
 		$Ustawienia.hide()
 		$menu_pauzy.show()
 	else:
 		$Ustawienia.hide()
+		ustawienia_open=false
 		
 
 
 func _on_resume_button_pressed():
-	get_tree().paused = false
+	if external_pause == false:
+		get_tree().paused = false
+	pausable = false
 	$menu_pauzy.hide()
 	$pause_button.hide()
 	$pause_button.texture_normal = ResourceLoader.load("res://assets/user_interface/pauza.svg")
@@ -141,12 +145,17 @@ func _on_sfx_slider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"),value)
 
 func _on_start_button_pressed():
+	$ustawienia_button.hide()
 	$pause_button.show()
 	$menu_start.hide()
 	start_game.emit()
 
 func _on_ustawienia_button_pressed():
-	$Ustawienia.show()
+	ustawienia_open = not ustawienia_open
+	if ustawienia_open==true:
+		$Ustawienia.show()
+	else:
+		$Ustawienia.hide()
 	
 func game_over():
 	$menu_start.show()
@@ -154,3 +163,22 @@ func game_over():
 	$menu_start/Title2.show()
 	$menu_start/start_button.text = "PLAY AGAIN"
 	$pause_button.hide()
+	$ustawienia_button.show()
+
+var postac = ["default","dragon","pegaz"]
+var obrazek = ["res://assets/player/Alikorn.png","res://assets/player/Smok.png","res://assets/player/Pegaz.png"]
+var i = 0
+func _on_lewo_button_pressed():
+	i=i-1
+	if(i<0):
+		i=2
+	$Ustawienia/settings/character.texture = ResourceLoader.load(obrazek[i])
+	get_parent().get_node("Player").get_node("AnimatedSprite2D").animation = postac[i]
+
+
+func _on_prawo_button_pressed():
+	i=i+1
+	if(i>2):
+		i=0
+	$Ustawienia/settings/character.texture = ResourceLoader.load(obrazek[i])
+	get_parent().get_node("Player").get_node("AnimatedSprite2D").animation = postac[i]

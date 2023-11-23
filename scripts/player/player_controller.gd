@@ -73,6 +73,7 @@ func _physics_process(delta: float) -> void:
   
 func upgrade_player(upgrade) -> void:
 
+	get_parent().get_node("User_Interface").external_pause = false
 	if UpgradeDb.UPGRADES[upgrade]["type"] == "weapon":
 		projectile.set_script(load(UpgradeDb.UPGRADES[upgrade]["script_path"]))
 	elif UpgradeDb.UPGRADES[upgrade]["type"] == "ability":
@@ -118,6 +119,7 @@ func level_up():
 		upgrade_screen_ui.get_child(0).add_child(option_choice)
 		options += 1
 	get_tree().paused = true
+	get_parent().get_node("User_Interface").external_pause = true
 	
 func _on_button_pressed() -> void:
 	progression_system.add_xp(randi_range(3, 5))
