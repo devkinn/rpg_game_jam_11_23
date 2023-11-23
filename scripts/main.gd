@@ -7,8 +7,10 @@ signal lost
 @onready var projectile: RigidBody2D = preload("res://scenes/projectile.tscn").instantiate()
 @onready var music: AudioStreamPlayer = $Sounds/Background
 
+@onready var gets_harder: Timer = $Gets_harder
 @onready var spawn: Timer = $MobSpawn
 @onready var mob_spawn_location: PathFollow2D = $Spawn_path/Follow
+var hardnes: int = 0
 @onready var enemies =[
 	preload("res://scenes/gargoyle.tscn"),
 	preload("res://scenes/ghost.tscn")
@@ -23,6 +25,7 @@ func game_over():
 	lost.emit()
 	player.Health = 3
 	player.shot_number = 1
+	player.damage=10
 	player.upgrade_options.clear()
 	player.collected_upgrades.clear()
 	player.get_node("ProgressionSystem").current_level = 0
@@ -32,13 +35,13 @@ func game_over():
 	player.get_node("Immunity").stop()
 	player.position = player_start_position.position
 	music.stop()
-	
-	
+	hardnes = 0
 
 
 
 func start_game():
 	spawn.start()
+	gets_harder.start()
 	if(!music.playing):
 		music.play() # Replace with function body.
 
@@ -47,7 +50,11 @@ func mob_spawn():
 	var mob = enemies[randi_range(0, enemies.size()-1)].instantiate()
 	mob_spawn_location.progress_ratio = randf_range(0,1)
 	mob.position = mob_spawn_location.position
-	
-	mob.visible =true
-	
+	mob.health = mob.BaseHealth * (hardnes+1)
+		
 	add_child(mob.duplicate())
+
+
+func _on_gets_harder():
+	spawn.wait_time *= 0.8
+	hardnes +=1

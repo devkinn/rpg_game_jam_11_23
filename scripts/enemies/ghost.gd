@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 
 const speed = 300.0
+const BaseHealth = 25
 var health = 25.0
 
 
@@ -16,6 +17,6 @@ func _physics_process(delta):
 	if(move_and_collide(velocity*delta)):
 		health -= player.damage
 		if(health<0):
-			#sounds.get_node("Death").play()
+			sounds.get_node("Death").play()
 			player.get_node("ProgressionSystem").add_xp(3)
 			queue_free()

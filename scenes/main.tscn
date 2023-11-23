@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxmwusqu6ml2s"]
+[gd_scene load_steps=13 format=3 uid="uid://dxmwusqu6ml2s"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_liftv"]
 [ext_resource type="PackedScene" uid="uid://dlhra2v7ybiop" path="res://scenes/player.tscn" id="1_wqq3u"]
@@ -8,7 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://c0qmsi2mhsmgn" path="res://assets/user_interface/serce.png" id="7_0u56l"]
 [ext_resource type="AudioStream" uid="uid://ck25y5hg7qll2" path="res://assets/sounds/Fire_40.wav" id="8_f6rnu"]
 [ext_resource type="AudioStream" uid="uid://c7278v7880sqw" path="res://assets/sounds/04_Fire_explosion_04_medium.wav" id="9_axmau"]
+[ext_resource type="AudioStream" uid="uid://dx6tgp3m5hgpx" path="res://assets/sounds/Gargoyle_death.wav" id="10_lrbxi"]
 [ext_resource type="AudioStream" uid="uid://o7xk4k0qwso0" path="res://assets/sounds/2016_ Clement Panchout_ Life is full of Joy.wav" id="10_qnfis"]
+[ext_resource type="AudioStream" uid="uid://dbcw0imetug07" path="res://assets/sounds/Ghost_death.wav" id="11_o4knt"]
 
 [sub_resource type="Curve2D" id="Curve2D_j4mmk"]
 _data = {
@@ -79,9 +81,18 @@ bus = &"Music"
 
 [node name="Gargoyle" type="Node" parent="Sounds"]
 
+[node name="Death" type="AudioStreamPlayer" parent="Sounds/Gargoyle"]
+stream = ExtResource("10_lrbxi")
+bus = &"SFX"
+
 [node name="Witch" type="Node" parent="Sounds"]
 
 [node name="Ghost" type="Node" parent="Sounds"]
+
+[node name="Death" type="AudioStreamPlayer" parent="Sounds/Ghost"]
+stream = ExtResource("11_o4knt")
+volume_db = -15.0
+bus = &"SFX"
 
 [node name="Spawn_path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_j4mmk")
@@ -90,10 +101,14 @@ curve = SubResource("Curve2D_j4mmk")
 position = Vector2(64, 0)
 
 [node name="MobSpawn" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 3.0
+
+[node name="Gets_harder" type="Timer" parent="."]
+wait_time = 20.0
 
 [connection signal="lost" from="." to="User_Interface" method="game_over"]
 [connection signal="start_game" from="User_Interface" to="." method="start_game"]
 [connection signal="game_over" from="Player" to="." method="game_over"]
 [connection signal="pressed" from="Button" to="Player" method="_on_button_pressed"]
 [connection signal="timeout" from="MobSpawn" to="." method="mob_spawn"]
+[connection signal="timeout" from="Gets_harder" to="." method="_on_gets_harder"]
