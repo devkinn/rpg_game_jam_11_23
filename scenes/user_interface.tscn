@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpgxrmbbwl7oi"]
+[gd_scene load_steps=11 format=3 uid="uid://bpgxrmbbwl7oi"]
 
 [ext_resource type="Script" path="res://scripts/User_Interface.gd" id="1_jw4f7"]
 [ext_resource type="Texture2D" uid="uid://cm0og8xdpyltm" path="res://assets/backbround/IslandsMap1.png" id="2_b07jj"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://7gx3qbfatamc" path="res://assets/player/Alikorn.png" id="5_lhlw0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pucu4"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_gklr4"]
+action = &"pause"
+
+[sub_resource type="Shortcut" id="Shortcut_bhcfn"]
+events = [SubResource("InputEventAction_gklr4")]
 
 [node name="User_Interface" type="CanvasLayer"]
 script = ExtResource("1_jw4f7")
@@ -162,6 +168,7 @@ offset_bottom = 472.0
 texture_normal = ExtResource("4_nem74")
 
 [node name="prawo_button" type="TextureButton" parent="Ustawienia/settings"]
+layout_mode = 0
 offset_left = 328.0
 offset_top = 432.0
 offset_right = 368.0
@@ -350,7 +357,7 @@ offset_bottom = 39.0
 focus_mode = 0
 text = "Edit"
 
-[node name="upgrade_bind" type="Button" parent="Ustawienia/Controls"]
+[node name="pause_bind" type="Button" parent="Ustawienia/Controls"]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 464.0
@@ -359,10 +366,10 @@ offset_bottom = 512.0
 focus_mode = 0
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
-text = "Z"
+text = "P"
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="Ustawienia/Controls/upgrade_bind"]
+[node name="Label" type="Label" parent="Ustawienia/Controls/pause_bind"]
 layout_mode = 0
 offset_left = 99.0
 offset_top = 8.0
@@ -372,9 +379,9 @@ theme_override_colors/font_color = Color(0.952941, 0.968627, 0.980392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
-text = "Upgrade"
+text = "Pause"
 
-[node name="edit_button6" type="Button" parent="Ustawienia/Controls/upgrade_bind"]
+[node name="edit_button6" type="Button" parent="Ustawienia/Controls/pause_bind"]
 layout_mode = 0
 offset_left = 250.0
 offset_top = 8.0
@@ -384,6 +391,7 @@ focus_mode = 0
 text = "Edit"
 
 [node name="attackspeedup_bind" type="Button" parent="Ustawienia/Controls"]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 520.0
@@ -417,6 +425,7 @@ focus_mode = 0
 text = "Edit"
 
 [node name="attackspeeddown_bind" type="Button" parent="Ustawienia/Controls"]
+visible = false
 layout_mode = 0
 offset_left = 80.0
 offset_top = 576.0
@@ -525,6 +534,7 @@ anchor_left = 0.833333
 anchor_top = 0.0222222
 anchor_right = 0.960417
 anchor_bottom = 0.105556
+shortcut = SubResource("Shortcut_bhcfn")
 texture_normal = ExtResource("3_0a440")
 metadata/_edit_use_anchors_ = true
 
@@ -589,7 +599,7 @@ default_color = Color(0, 0, 0, 1)
 [connection signal="pressed" from="Ustawienia/Controls/left_bind/edit_button3" to="." method="_on_edit_button_3_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/right_bind/edit_button4" to="." method="_on_edit_button_4_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/shoot_bind/edit_button5" to="." method="_on_edit_button_5_pressed"]
-[connection signal="pressed" from="Ustawienia/Controls/upgrade_bind/edit_button6" to="." method="_on_edit_button_6_pressed"]
+[connection signal="pressed" from="Ustawienia/Controls/pause_bind/edit_button6" to="." method="_on_edit_button_6_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/attackspeedup_bind/edit_button7" to="." method="_on_edit_button_7_pressed"]
 [connection signal="pressed" from="Ustawienia/Controls/attackspeeddown_bind/edit_button8" to="." method="_on_edit_button_8_pressed"]
 [connection signal="pressed" from="Ustawienia/controls_button" to="." method="_on_controls_button_pressed"]

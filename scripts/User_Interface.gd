@@ -5,6 +5,7 @@ signal start_game
 @export var external_pause: bool = false
 var e
 var ustawienia_open = false
+var notabandoned = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +18,7 @@ func _process(delta):
 
 func _input(event):
 	if e != "nothing":
-		if event is InputEventKey and event.pressed:
+		if event is InputEventKey and event.pressed and notabandoned == true:
 			var x = event
 			InputMap.action_erase_events(e)
 			InputMap.action_add_event(e,x)
@@ -31,8 +32,8 @@ func _input(event):
 				$Ustawienia/Controls/right_bind.text = x.as_text()
 			if e == "shoot":
 				$Ustawienia/Controls/shoot_bind.text = x.as_text()
-			if e == "upgrade":
-				$Ustawienia/Controls/upgrade_bind.text = x.as_text()
+			if e == "pause":
+				$Ustawienia/Controls/pause_bind.text = x.as_text()
 			if e == "attack_speed_up":
 				$Ustawienia/Controls/attackspeedup_bind.text = x.as_text()
 			if e == "attack_speed_down":
@@ -48,49 +49,59 @@ func _on_controls_button_pressed():
 func _on_settings_button_pressed():
 	$Ustawienia/settings.show()
 	$Ustawienia/Controls.hide()
+	notabandoned = false
+	$Ustawienia/Controls/zmien_klawisz.hide()
 
 func _on_edit_button_1_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for move up action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="move_up"
 
 
 func _on_edit_button_2_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for move down action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="move_down"
 
 func _on_edit_button_3_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for move left action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="move_left"
 
 
 func _on_edit_button_4_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for move right action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="move_right"
 
 
 func _on_edit_button_5_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for shoot action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="shoot"
 
 
 func _on_edit_button_6_pressed():
-	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for upgrade action"
+	notabandoned = true
+	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for pause action"
 	$Ustawienia/Controls/zmien_klawisz.show()
-	e="upgrade"
+	e="pause"
 
 
 func _on_edit_button_7_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for attack speed up action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="attack_speed_up"
 
 
 func _on_edit_button_8_pressed():
+	notabandoned = true
 	$Ustawienia/Controls/zmien_klawisz/Label2.text = "Press a new key for attack speed down action"
 	$Ustawienia/Controls/zmien_klawisz.show()
 	e="attack_speed_down"
@@ -111,6 +122,8 @@ func _on_texture_button_pressed():
 		$pause_button.texture_normal = ResourceLoader.load("res://assets/user_interface/pauza.svg")
 		$pause_button.show()
 		$Ustawienia.hide()
+		notabandoned = false
+		$Ustawienia/Controls/zmien_klawisz.hide()
 		
 func _on_close_button_pressed():
 	if get_tree().paused == true:
@@ -119,6 +132,8 @@ func _on_close_button_pressed():
 	else:
 		$Ustawienia.hide()
 		ustawienia_open=false
+	notabandoned = false
+	$Ustawienia/Controls/zmien_klawisz.hide()
 		
 
 
