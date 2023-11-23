@@ -19,5 +19,8 @@ func _physics_process(delta):
 		health -= player.damage
 		if(health<0):
 			sounds.get_node("Death").play()
-			player.get_node("ProgressionSystem").add_xp(5)
+			player.get_node("ProgressionSystem").add_xp(10)
 			queue_free()
+			
+func add_health(hp: int):
+	health += hp

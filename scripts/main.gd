@@ -15,6 +15,10 @@ var hardnes: int = 0
 	preload("res://scenes/gargoyle.tscn"),
 	preload("res://scenes/ghost.tscn")
 ]
+
+@export var currentHealthUpgrade = 0
+@export var maxHealthIncrement = 5
+
 func _ready() -> void:
 	player.position = player_start_position.position
 	$HealthIcon/healthvalue.text = str($Player.Health)
@@ -54,6 +58,8 @@ func start_game():
 
 func mob_spawn():
 	var mob = enemies[randi_range(0, enemies.size()-1)].instantiate()
+	currentHealthUpgrade += randi_range(0, maxHealthIncrement)
+	mob.add_health(currentHealthUpgrade)
 	mob_spawn_location.progress_ratio = randf_range(0,1)
 	mob.position = mob_spawn_location.position
 	mob.health = mob.BaseHealth * (hardnes+1)
